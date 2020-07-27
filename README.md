@@ -1,1 +1,1 @@
-# springboot-flugin
+# springboot-plugin
