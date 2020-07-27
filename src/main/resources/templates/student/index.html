@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link th:replace="layout::base_header('stduent')"/>
+    <meta charset="utf-8"/>
+</head>
+
+<body th:replace="layout::header"></body>
+<div class="container">
+    <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+    <div th:if="${message}">
+        <h2 th:text="${message}"/>
+    </div>
+    <form th:action="@{/student/search}" th:method="post" th:object="${studentForm}" role="form" id="studentForm">
+        <div class="form-group input-material">
+            <input type="text" class="form-control col-md-4 required" id="name-field" th:field="*{name}">
+            <label for="name-field">Name</label>
+        </div>
+        <!--<div class="form-group row mt-3">
+            <div class="col-md-2 title_column">
+                <label class="control-label">YN</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" th:field="*{name}" class="form-control">
+            </div>
+        </div>-->
+        <div class="form-group row mt-3">
+            <div class="col-md-2">
+                <label class="control-label">AG</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" th:field="*{age}" class="form-control" data-samask="000">
+            </div>
+        </div>
+        <div class="form-group row mx-auto">
+            <button class="btn btn-light btn-sm btn-radius" type="submit">検索</button>
+            <button class="reset btn btn-info btn-sm btn-radius ml-3" type="button">
+                <span>検索条件クリア</span>
+            </button>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" th:action="@{/student/upload}" enctype="multipart/form-data" id="oneUploadForm">
+                <div class="custom-file col-md-8 mx-auto">
+                    <input type="file" name="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">select file </label>
+                </div>
+                <div class="my-3 row mx-auto">
+                    <button class="btn btn-success btn-sm btn-radius" type="submit">UPLOAD</button>
+                </div>
+            </form>
+            <form method="post" th:action="@{/student/fileDownload}" enctype="multipart/form-data">
+                <div class="my-3 row mx-auto">
+                    <button class="btn btn-success btn-sm btn-radius" type="submit">DOWNLOAD</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <form method="post" th:action="@{/student/multiUpload}" enctype="multipart/form-data" id="allUploadForm">
+                <div class="custom-file col-md-8">
+                    <input type="file" name="file" class="custom-file-input" id="customFileA">
+                    <label class="custom-file-label" for="customFileA">100kb</label>
+                </div>
+                <div class="custom-file col-md-8 my-2">
+                    <input type="file" name="file" class="custom-file-input" id="customFileB">
+                    <label class="custom-file-label" for="customFileB">100kb</label>
+                </div>
+                <div class="custom-file col-md-8 my-2">
+                    <input type="file" name="file" class="custom-file-input" id="customFileC">
+                    <label class="custom-file-label" for="customFileC">100kb</label>
+                </div>
+                <div class="my-3 row mx-auto">
+                    <button class="btn btn-success btn-sm btn-radius" type="submit">UPLOADS</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <form th:action="@{/student/update}" th:method="post" role="form">
+
+        <div th:if="${pageInfo != null}" >
+            <div class="row">
+                <!--/*@thymesVar id="pageInfo" type="com.github.pagehelper.PageInfo"*/-->
+                <ul th:replace="page/pageKmirari::paging(${pageInfo})"></ul>
+            </div>
+
+            <!--<ul class="pagination">
+                &lt;!&ndash; 首页 &ndash;&gt;
+                <li th:class="|page-item ${pageInfo.isFirstPage ? 'disabled' : ''}|">
+                    <a class="page-link" th:href="@{''(page=0)}">
+                        <span>首页</span>
+                    </a>
+                </li>
+                &lt;!&ndash; 上一页 &ndash;&gt;
+                <li th:class="|page-item ${pageInfo.isFirstPage ? 'disabled' : ''}|">
+                    <a class="page-link" aria-label="Previous" th:href="@{''(page=${pageInfo.prePage})}">
+                        <span>上一页</span>
+                    </a>
+                </li>
+                &lt;!&ndash; 如果前面页码没有显示完则显示省略号 &ndash;&gt;
+                <li th:if="${pageInfo.navigateFirstPage > 1}"><span class="page-link disabled">&hellip;</span></li>
+                &lt;!&ndash; 显示导航页码 &ndash;&gt;
+                <th:block th:each="i: ${pageInfo.navigatepageNums}">
+                    <li th:class="|page-item ${(pageInfo.pageNum == i) ? 'active' : ''}|">
+                        <a class="page-link" th:href="@{''(page=${i})}" th:text="${i}"></a></li>
+                </th:block>
+                &lt;!&ndash; 如果后面页码没有显示完则显示省略号 &ndash;&gt;
+                <li th:if="${pageInfo.navigateLastPage < pageInfo.pages}"><span class="page-link disabled">&hellip;</span></li>
+                &lt;!&ndash; 下一页 &ndash;&gt;
+                <li th:class="|page-item ${pageInfo.isLastPage ? 'disabled' : ''}|">
+                    <a class="page-link" th:href="@{''(page=${pageInfo.nextPage})}">
+                        <span>下一页</span>
+                    </a>
+                </li>
+                &lt;!&ndash; 末页 &ndash;&gt;
+                <li th:class="|page-item ${pageInfo.isLastPage ? 'disabled' : ''}|">
+                    <a class="page-link" th:href="@{''(page=${pageInfo.pages})}">
+                        <span>末页</span>
+                    </a>
+                </li>
+            </ul>-->
+            <div class="row">
+                <table class="table table-striped table-bordered table-hover table-condensed col-md-4">
+                    <legend>
+                        <strong>列表</strong>
+                    </legend>
+                    <thead>
+                    <tr class="bg-success text-white">
+                        <th>ID</th>
+                        <th>YN</th>
+                        <th>AG</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--/*@thymesVar id="student" type="com.nasus.helloword.form.Student"*/-->
+                    <tr th:each="student : ${pageInfo.list}">
+                        <input type="hidden" th:value="${student.id}" th:name="'stuList[' + ${studentStat.index} + '].id'">
+                        <td th:text="${student.id}"></td>
+                        <td>
+                            <input type="text" th:value="${student.name}" class="form-control" th:name="'stuList[' + ${studentStat.index} + '].name'">
+                        </td>
+                        <td>
+                            <input type="text" th:value="${student.age}" class="form-control" th:name="'stuList[' + ${studentStat.index} + '].age'">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group row">
+                <button class="btn btn-danger btn-sm btn-radius" type="submit">UC</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script th:inline="javascript">
+
+    $(".reset").click(function(){
+        $(":input", "#studentForm,#oneUploadForm,#allUploadForm").not(":button", ":reset", ":hidden", ":submit").not("select[disabled='disabled']").val("").removeAttr("checked").removeAttr("selected");
+        $(".custom-file-label").html("100KB");
+    })
+
+    $('#age').placeholderTypewriter({
+        text: ["Only three digits can be entered !", "999", "99", "9"]
+    });
+
+    $(document).on('change', '.custom-file-input', function (event) {
+        $(this).next('.custom-file-label').html(event.target.files[0].name);
+    })
+
+    $(function() {
+        $.samaskHtml();
+
+        $('#studentForm').materializeInputs(".input-material #name-field");
+    });
+
+</script>
+</html>

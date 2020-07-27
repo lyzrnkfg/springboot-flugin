@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.container {
+	min-width: 960px;
+	max-width: none;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.title_column {
+	max-width: 400px;
+	height: 39px;
+}
+
+.input_column {
+	max-width: 400px;
+}
+
+.input_column_leage {
+	width: 700px;
+	padding-left: 0px;
+	font-size: 1rem;
+}
+
+.input_column .form-control{
+	margin: 0px;
+}

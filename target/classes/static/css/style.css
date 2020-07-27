@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+body {
+	font-size: 14px;
+}
+
+.bg-nav {
+	background-color: #3c4db9;
+}
+
+.title_column {
+	vertical-align: middle;
+	background-color: #d9edf7;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgb(0, 128, 128);
+	padding-top: 3px;
+	color: #205791;
+}
+
+.title_column.two_lines {
+	height: 78px;
+}
+
+textarea.two_lines {
+	height: 78px;
+}
+
+label.two_lines {
+	height: 78px;
+}
+
+pre.two_lines {
+	height: 78px;
+}
+
+.title_column.three_lines {
+	height: 117px;
+}
+
+textarea.three_lines {
+	height: 117px;
+}
+
+.label_column {
+	vertical-align: middle;
+}
+
+.input_column {
+	padding-left: 0px;
+	font-size: 1rem;
+}
+
+.table_header {
+	background-color: #d9edf7;
+	white-space: nowrap;
+}
+
+.table_body {
+	white-space: nowrap;
+}
+
+.required {
+	color: red;
+}
+
+.row_margin {
+	margin-top: 5px;
+}
+
+.col_margin {
+	padding-right: 0px;
+	margin-right: -10px;
+}
+
+.block_area {
+	height: 20px;
+}
+
+.index_btn {
+	font-size: 12px;
+	font-weight: bold;
+	width: 200px;
+	color: #FFF;
+	border-radius: 20px;
+	border: solid 1px #333;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: rgba(255, 255, 255, 1.0);
+}
+
+.dropdown-item {
+	color: rgba(255, 255, 255, 1.0);
+}
+
+tbody.multi-line:hover {
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+.name-label {
+	padding: 3px 0px;
+}
+
+/* エラー項目 */
+.error-field {
+	border-color: red;
+}
+
+/* 変更有項目 */
+.isChanged {
+	background-color: rgba(255, 255, 0, 0.15);
+}
+
+/* 検索条件開閉アイコン */
+[data-toggle="collapse"] i:before {
+	content: "\f0d7";
+}
+
+[data-toggle="collapse"].collapsed i:before {
+	content: "\f0da";
+}
+
+/* 長い文章を途中で切る */
+.box-read {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* チェックボックス上でポインタのアイコンを変える */
+.checkArea, input[type='checkbox'] {
+    cursor: pointer;
+}
+
+.btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="pageInfo" type="com.github.pagehelper.PageInfo"*/-->
+<ul class="pagination" th:fragment="paging(pageInfo)">
+    <!-- 首页 -->
+    <li th:class="|page-item ${pageInfo.isFirstPage ? 'disabled' : ''}|">
+        <a class="page-link" th:href="@{''(pageNum=1)}">
+            <span>首页</span>
+        </a>
+    </li>
+    <!-- 上一页 -->
+    <li th:class="|page-item ${pageInfo.isFirstPage ? 'disabled' : ''}|">
+        <a class="page-link" aria-label="Previous" th:href="@{''(pageNum=${pageInfo.prePage})}">
+            <span>上一页</span>
+        </a>
+    </li>
+    <!-- 如果前面页码没有显示完则显示省略号 -->
+    <li th:if="${pageInfo.navigateFirstPage > 1}"><span class="page-link disabled">&hellip;</span></li>
+    <!-- 显示导航页码 -->
+    <th:block th:each="i: ${pageInfo.navigatepageNums}">
+        <li th:class="|page-item ${(pageInfo.pageNum == i) ? 'active' : ''}|">
+            <a class="page-link" th:href="@{''(pageNum=${i})}" th:text="${i}"></a></li>
+    </th:block>
+    <!-- 如果后面页码没有显示完则显示省略号 -->
+    <li th:if="${pageInfo.navigateLastPage < pageInfo.pages}"><span class="page-link disabled">&hellip;</span></li>
+    <!-- 下一页 -->
+    <li th:class="|page-item ${pageInfo.isLastPage ? 'disabled' : ''}|">
+        <a class="page-link" th:href="@{''(pageNum=${pageInfo.nextPage})}">
+            <span>下一页</span>
+        </a>
+    </li>
+    <!-- 末页 -->
+    <li th:class="|page-item ${pageInfo.isLastPage ? 'disabled' : ''}|">
+        <a class="page-link" th:href="@{''(pageNum=${pageInfo.pages})}">
+            <span>末页</span>
+        </a>
+    </li>
+</ul>

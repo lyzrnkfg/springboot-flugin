@@ -1,0 +1,103 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="base_header(title)">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title th:text="${title}">Spring boot title</title>
+    <script src="/js/jquery-3.4.1.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/js/bootstrap-datetimepicker.ja.js"></script>
+    <script src="/js/jquery.samask-masker.js"></script>
+    <script src="/js/placeholderTypewriter.js"></script>
+    <script src="/js/materialize-inputs.jquery.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/bootstrap-calendar.css" />
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="/css/input-material.css" />
+    <link rel="stylesheet" href="/css/button.css" />
+</head>
+
+
+<body style="background: url(/images/1.jpg) no-repeat center center fixed; background-size: 100% 100%;" th:fragment="header">
+<div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <div class="container p-0">
+                <div class="row mx-3">
+                    <ul class="navbar-nav col-lg-12 col-xl-7 p-0">
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                ONEMAN
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="bg-info dropdown-menu" role="menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">NARUTO</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                ONEPICES
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="bg-info dropdown-menu" role="menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">GAAIRO</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                ONETAIGER
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="bg-info dropdown-menu" role="menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">OBITO</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                ONEKAIZOKU
+                                <span class="create"></span>
+                            </a>
+                            <ul class="bg-info dropdown-menu" role="menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">RUFULI</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">SASUGE</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+<script th:inline="javascript">
+
+    $(document).ready(function() {
+        /*var imgName = ["bg.jpeg", "bg.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"]*/
+        var imgName = ["1.jpg"]
+        $("body").css({"background": "url(/images/" + imgName[Math.floor(Math.random() * imgName.length)] + ") no-repeat center center fixed", "background-size": "100% 100%"});
+
+    });
+
+</script>
+
+</body>
+</html>
